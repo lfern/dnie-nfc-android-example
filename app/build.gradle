@@ -1,0 +1,57 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.example.dnieexample'
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.example.dnieexample"
+        minSdk 26
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    packagingOptions {
+        exclude 'AndroidManifest.xml'
+        exclude 'res/drawable/notification_bg.xml'
+        exclude 'res/drawable/notification_bg_low.xml'
+        exclude 'res/layout/notification_template_part_time.xml'
+        exclude 'res/layout/notification_template_part_chronometer.xml'
+        exclude 'resources.arsc'
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        //sourceCompatibility JavaVersion.VERSION_1_10
+        //targetCompatibility JavaVersion.VERSION_1_10
+    }
+}
+
+dependencies {
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+    implementation ('es.gob.afirma.jmulticard:jmulticard-android:1.8-SNAPSHOT') {
+        //exclude group: "com.google.android", module:"support-v4:r6"
+        exclude module: 'support-v4'
+    }
+    implementation 'es.gob.afirma.jmulticard:jmulticard-jse:1.8-SNAPSHOT'
+    implementation 'com.gemalto.jp2:jp2-android:1.0.3'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
